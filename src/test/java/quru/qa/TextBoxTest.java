@@ -21,21 +21,12 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTest {
 
-   // @BeforeAll
-   // static void Beforall() {
-  //      Configuration.browserSize = "1928x1080";
-  //  }
-
-    @Test
-
-
+      @Test
     void successTest() {
         Configuration.browserPosition = "25x25";
         Configuration.browser = OPERA;
 
         open("https://demoqa.com/automation-practice-form");
-
-
         $("#firstName").setValue("Kristina");
         $("#lastName").setValue("Karabetskai");
         $("#userEmail").setValue("425875@mail.ru");
@@ -49,24 +40,15 @@ public class TextBoxTest {
         $("#subjectsInput").setValue("Maths").pressEnter();
         $(by("for" , "hobbies-checkbox-3")).click();
         $(by("for" , "hobbies-checkbox-1")).scrollTo().click();
-
         $("input#uploadPicture").uploadFile(new File("C:\\i.jpg"));
-
-        sleep(1000);
         $("#currentAddress").setValue("Simferopol");
         $("#state").click();
         $(byText("Haryana")).click();
         $("#city").click();
         $(byText("Karnal")).click();
-
-        sleep(1000);
-
-
         $("#submit").click();
-        sleep(1500);
 
         $("#example-modal-sizes-title-lg").shouldBe(visible);
-
 
         $(".modal-body")
                 .shouldHave(text("Kristina"))
@@ -79,14 +61,6 @@ public class TextBoxTest {
                 .shouldHave(text("Music, Sport"))
                 .shouldHave(text("i.jpg"))
                 .shouldHave(text("Simferopol"))
-                .shouldHave(text("Haryana Karnal"))
-
-        ;
-
-
-
-
-
-
-                  }
+                .shouldHave(text("Haryana Karnal"));
+                          }
 }
