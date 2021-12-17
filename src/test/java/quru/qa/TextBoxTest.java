@@ -18,14 +18,15 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
-
 public class TextBoxTest {
 
-      @Test
-    void successTest() {
-        Configuration.browserPosition = "25x25";
+    @BeforeAll
+    static void BeforeAll() {
         Configuration.browser = OPERA;
-
+        Configuration.browserPosition = "25x25";
+    }
+    @Test
+    void successTest() {
         open("https://demoqa.com/automation-practice-form");
         $("#firstName").setValue("Kristina");
         $("#lastName").setValue("Karabetskai");
@@ -40,7 +41,7 @@ public class TextBoxTest {
         $("#subjectsInput").setValue("Maths").pressEnter();
         $(by("for" , "hobbies-checkbox-3")).click();
         $(by("for" , "hobbies-checkbox-1")).scrollTo().click();
-        $("input#uploadPicture").uploadFile(new File("C:\\i.jpg"));
+        $("#uploadPicture").uploadFile(new File("src/test/resources/i.jpg"));
         $("#currentAddress").setValue("Simferopol");
         $("#state").click();
         $(byText("Haryana")).click();
@@ -50,17 +51,17 @@ public class TextBoxTest {
 
         $("#example-modal-sizes-title-lg").shouldBe(visible);
 
-        $(".modal-body")
-                .shouldHave(text("Kristina"))
-                .shouldHave(text("Karabetskai"))
-                .shouldHave(text("425875@mail.ru"))
-                .shouldHave(text("Other"))
-                .shouldHave(text("8978038276"))
-                .shouldHave(text("27 June,1991"))
-                .shouldHave(text("Arts, Maths"))
-                .shouldHave(text("Music, Sport"))
-                .shouldHave(text("i.jpg"))
-                .shouldHave(text("Simferopol"))
-                .shouldHave(text("Haryana Karnal"));
-                          }
+        $(".modal-body").shouldHave(
+                (text("Kristina")),
+                (text("Karabetskai")),
+                (text("425875@mail.ru")),
+                (text("Other")),
+                (text("8978038276")),
+                (text("27 June,1991")),
+                (text("Arts, Maths")),
+                (text("Music, Sport")),
+                (text("i.jpg")),
+                (text("Simferopol")),
+                (text("Haryana Karnal")));
+      }
 }
